@@ -1,10 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerControl.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MusicController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Crumble.js" Line="18" Column="75" />
-      <File FileName="Assets\Scripts\PlayerControl.js" Line="45" Column="38" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" Line="61" Column="7" />
+      <File FileName="Assets\Scripts\MusicController.cs" Line="65" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -6,10 +6,10 @@ public class MusicController : MonoBehaviour {
 
 	private static AudioClip current;
 	private static AudioClip[] songs;
-	private Dictionary<string, AudioClip> songList;
-	private AudioSource musicController;
+	private Dictionary<string, AudioClip> songList = new Dictionary<string, AudioClip>();
+	private static AudioSource musicPlayer;
 
-
+	//This helps getting songs easier by using KeyValue pairs instead of boring array shit.
 	private void _ConvertArrayToDict()
 	{
 		foreach( AudioClip clip in songs )
@@ -20,7 +20,7 @@ public class MusicController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		musicController = GetComponent<AudioSource>();
+		musicPlayer = GetComponent<AudioSource>();
 		songs = Resources.LoadAll<AudioClip>("Music");
 		_ConvertArrayToDict();
 	}
@@ -30,34 +30,46 @@ public class MusicController : MonoBehaviour {
 	
 	}
 
-	void PlaySong( string song, bool loop )
+	public void PlaySong( string song, bool loop = false )
 	{
 		AudioClip newSong;
 		if( songList.TryGetValue( song, out newSong ) )
 		{
 			current = newSong;
-			musicController.clip = current;
-			musicController.loop = loop;
+			musicPlayer.clip = current;
+			musicPlayer.loop = loop;
+			musicPlayer.Play();
+		}
+		else
+		{
+			Debug.LogError( "Did not find song of name " + song );
 		}
 	}
 
-	void PauseSong()
+	public void PauseSong()
 	{
-		musicController.Pause();
+		musicPlayer.Pause();
 	}
 
-	void StopSong()
+	public void StopSong()
 	{
-		musicController.Stop();
+		musicPlayer.Stop();
 	}
 
-	void FadeInSong( string song, bool loop )
+	public void FadeIn( string song, float fadeTime, bool loop = false )
 	{
 
+	}
+
+	public void ChangePitch( float pitch, float changeRate )
+	{
+
+		musicPlayer.pitch = Mathf.Lerp( musicPlayer.pitch, pitch, changeRate );
 	}
 
 	public static AudioClip CurrentSong()
 	{
 		return current;
 	}
+	
 }
