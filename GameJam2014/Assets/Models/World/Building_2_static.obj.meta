@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: dfc9213691bb23941bc409d554804b86
+guid: b7f372bb2a822b14bac2313fadb3daf8
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
-    100002: grp13_building_geo66_building_grp13
+    100002: grp13_building_geo56_building_grp13
     400000: //RootNode
-    400002: grp13_building_geo66_building_grp13
-    2300000: grp13_building_geo66_building_grp13
-    3300000: grp13_building_geo66_building_grp13
-    4300000: grp13_building_geo66_building_grp13
+    400002: grp13_building_geo56_building_grp13
+    2300000: grp13_building_geo56_building_grp13
+    3300000: grp13_building_geo56_building_grp13
+    4300000: grp13_building_geo56_building_grp13
     9500000: //RootNode
     11100000: //RootNode
   materials:
