@@ -4,6 +4,7 @@ private var chCont : CharacterController;
 private var chMotor : CharacterMotor;
 private var lastSafePosition : Vector3;
 public  var anger : double;
+private var lastStep : float = 0;
 
 function Start() {
 	chMotor = GetComponent(CharacterMotor);
@@ -17,20 +18,31 @@ function Update() {
 		lastSafePosition = transform.position;
 	}
 	if( chCont.velocity.magnitude < 4 ){
-		anger = anger - 0.2;
+		anger = anger - 0.15;
 		if( anger < 1 ){
 			anger = 0;
 		}
 	}
 	else{
-		anger = anger + 0.4 ;
+		anger = anger + 0.2 ;
 		if( anger > 100 ){
 			anger = 100;
 		}
 	}
+	
+	// Camera Object
+	var cam = GameObject.FindWithTag("MainCamera").GetComponent(Camera);
+	cam.fieldOfView = 90 + (anger/100)*5;
+	
+	// Ambient Lighting
+	var Mod = anger*1.7/255;
+	RenderSettings.ambientLight = Color(0.8-Mod,0.8-Mod,0.8-Mod);
+	
+	// Character motor settings object
 	var move = chMotor.movement;
-	var tier = Mathf.Floor(anger/20);
+	
 	// Tiers of angryness, changing the movement stuff
+	var tier = Mathf.Floor(anger/20);
 	if( tier == 1 ){ // Anger 1
 		move.maxForwardSpeed = 9;
 		move.maxGroundAcceleration = 12;
@@ -64,9 +76,14 @@ function Update() {
 		Debug.Log("Calm");
 	}
 	
+	var timeDiff = 0.8 - (anger/100)*0.4;
+	// Footsteps stuff
+	var footAudio = GetComponent(AudioSource);
+	if( chMotor.grounded && chCont.velocity.magnitude > 0.3 && Time.time > lastStep+timeDiff ){
+		footAudio.Play();
+		lastStep = Time.time;
+	}
 	
-	// Camera Control stuff
-	GameObject.FindWithTag("MainCamera");
 	
 }
 

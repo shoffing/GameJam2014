@@ -3,7 +3,7 @@
 var player : GameObject;
 
 function Start () {
-	player = GameObject.FindGameObjectsWithTag("Player")[0];
+	player = GameObject.FindWithTag("Player");
 	var anim : Animation = GetComponent(Animation);
 	var state = anim["C4D Animation Take"];
 	anim.Play();
@@ -15,5 +15,11 @@ function Update () {
 	var anim : Animation = GetComponent(Animation);
 	var state = anim["C4D Animation Take"];
 	state.speed = 0;
-	state.time = (state.length)*(player.GetComponent(PlayerControl).anger/100);
+	var tAnger = player.GetComponent(PlayerControl).anger;
+	tAnger = tAnger - 20;
+	if( tAnger < 0 ){
+		tAnger = 0;
+	}
+	var percent = tAnger/100 ;
+	state.time = (state.length)*percent;
 }
