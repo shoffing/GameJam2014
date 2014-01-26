@@ -6,6 +6,7 @@ public class SlowMotion : MonoBehaviour {
 	public float SlowAmount; //With this public you can edit it in the editor
 	public float SlowRate;
 	private AudioSource[] SoundSources;
+	public string SlomoKey = "space";
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,7 @@ public class SlowMotion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//CharacterControllers have a velocity property so let's check if we are moving
-		if( player.velocity != Vector3.zero )
+		if( Input.GetKey( SlomoKey.ToLower() ) )
 		{
 			Time.timeScale = Mathf.Lerp(Time.timeScale, SlowAmount, SlowRate); //TimeScale affects anything using Time.deltaTime (A lot of stuff...even particles!)
 			Time.fixedDeltaTime = 0.02F * Time.timeScale; 
