@@ -16,10 +16,6 @@ function Update () {
 	var state = anim["C4D Animation Take"];
 	state.speed = 0;
 	var tAnger = player.GetComponent(PlayerControl).anger;
-	tAnger = tAnger - 20;
-	if( tAnger < 0 ){
-		tAnger = 0;
-	}
-	var percent = tAnger/100 ;
+	var percent = tAnger/100;
 	state.time = (state.length)*percent;
 }
