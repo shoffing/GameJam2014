@@ -17,7 +17,7 @@ function Update() {
 		lastSafePosition = transform.position;
 	}
 	if( chCont.velocity.magnitude < 3 ){
-		anger = anger * 0.8;
+		anger = anger * 0.95;
 		if( anger < 1 ){
 			anger = 0;
 		}

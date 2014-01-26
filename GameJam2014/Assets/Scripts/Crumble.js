@@ -5,11 +5,15 @@ var player : GameObject;
 function Start () {
 	player = GameObject.FindGameObjectsWithTag("Player")[0];
 	var anim : Animation = GetComponent(Animation);
+	var state = anim["C4D Animation Take"];
 	anim.Play();
-	anim["C4D Animation Take"].speed = 0;
-	anim["C4D Animation Take"].time = 40;
+	state.speed = 0;
+	state.time = 0;
 }
 
 function Update () {
-	Debug.Log("FOUND:"+player.GetComponent(PlayerControl).anger);
+	var anim : Animation = GetComponent(Animation);
+	var state = anim["C4D Animation Take"];
+	state.speed = 0;
+	state.time = (state.length)*(player.GetComponent(PlayerControl).anger/100);
 }
